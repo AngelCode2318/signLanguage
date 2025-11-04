@@ -1,0 +1,25 @@
+# ========================================
+# INSTRUCCIONES RÁPIDAS - INICIO
+# ========================================
+
+# PASO 1: Instalar dependencias (solo la primera vez)
+npm install
+
+# PASO 2: Iniciar el servidor
+npm start
+
+# O para desarrollo con auto-reinicio:
+npm run dev
+
+# ========================================
+# El servidor correrá en:
+# http://localhost:3000
+# ========================================
+
+# COMANDOS ÚTILES:
+
+# Ver todos los usuarios registrados:
+# Invoke-RestMethod -Uri "http://localhost:3000/api/usuarios" -Method Get
+
+# Detener el servidor:
+# Presiona Ctrl + C en la terminal

@@ -377,6 +377,11 @@ body {
 .pdf-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-hover);
+    background-color: #f8f9fa;
+}
+
+.pdf-card .btn {
+    pointer-events: none; /* Evita que el botón sea clicable por separado */
 }
 
 .pdf-icon {

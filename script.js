@@ -1,5 +1,10 @@
 // Sistema de autenticación con localStorage
 
+// Detectar URL del servidor (local o producción)
+const API_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:3000' 
+    : window.location.origin;
+
 // Función para inicializar la aplicación
 document.addEventListener('DOMContentLoaded', function() {
     verificarSesion();
@@ -70,7 +75,7 @@ function inicializarFormularios() {
 }
 
 // Manejar registro de nuevo usuario
-function manejarRegistro(e) {
+async function manejarRegistro(e) {
     e.preventDefault();
     
     const nombre = document.getElementById('nombre').value;
@@ -96,42 +101,41 @@ function manejarRegistro(e) {
         return;
     }
     
-    // Obtener usuarios existentes
-    let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-    
-    // Verificar si el email ya existe
-    if (usuarios.some(user => user.email === email)) {
-        mostrarError(errorDiv, 'Este correo electrónico ya está registrado');
-        return;
+    try {
+        // Enviar datos al servidor
+        const response = await fetch(`${API_URL}/api/registro`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ nombre, email, password })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            // Mostrar mensaje de éxito
+            successDiv.textContent = '¡Registro exitoso! Redirigiendo al login...';
+            successDiv.style.display = 'block';
+            
+            // Limpiar formulario
+            document.getElementById('registroForm').reset();
+            
+            // Redirigir al login después de 2 segundos
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 2000);
+        } else {
+            mostrarError(errorDiv, data.message);
+        }
+    } catch (error) {
+        mostrarError(errorDiv, 'Error de conexión. Asegúrate de que el servidor esté ejecutándose.');
+        console.error('Error:', error);
     }
-    
-    // Crear nuevo usuario
-    const nuevoUsuario = {
-        id: Date.now(),
-        nombre: nombre,
-        email: email,
-        password: password,
-        fechaRegistro: new Date().toISOString()
-    };
-    
-    usuarios.push(nuevoUsuario);
-    localStorage.setItem('usuarios', JSON.stringify(usuarios));
-    
-    // Mostrar mensaje de éxito
-    successDiv.textContent = '¡Registro exitoso! Redirigiendo al login...';
-    successDiv.style.display = 'block';
-    
-    // Limpiar formulario
-    document.getElementById('registroForm').reset();
-    
-    // Redirigir al login después de 2 segundos
-    setTimeout(() => {
-        window.location.href = 'login.html';
-    }, 2000);
 }
 
 // Manejar inicio de sesión
-function manejarLogin(e) {
+async function manejarLogin(e) {
     e.preventDefault();
     
     const email = document.getElementById('email').value;
@@ -140,26 +144,31 @@ function manejarLogin(e) {
     const errorDiv = document.getElementById('loginError');
     errorDiv.style.display = 'none';
     
-    // Obtener usuarios
-    const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-    
-    // Buscar usuario
-    const usuario = usuarios.find(user => user.email === email && user.password === password);
-    
-    if (!usuario) {
-        mostrarError(errorDiv, 'Correo electrónico o contraseña incorrectos');
-        return;
+    try {
+        // Enviar credenciales al servidor
+        const response = await fetch(`${API_URL}/api/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            // Guardar sesión activa
+            localStorage.setItem('usuarioActivo', JSON.stringify(data.usuario));
+            
+            // Redirigir a la página principal
+            window.location.href = 'index.html';
+        } else {
+            mostrarError(errorDiv, data.message);
+        }
+    } catch (error) {
+        mostrarError(errorDiv, 'Error de conexión. Asegúrate de que el servidor esté ejecutándose.');
+        console.error('Error:', error);
     }
-    
-    // Guardar sesión activa
-    localStorage.setItem('usuarioActivo', JSON.stringify({
-        id: usuario.id,
-        nombre: usuario.nombre,
-        email: usuario.email
-    }));
-    
-    // Redirigir a la página principal
-    window.location.href = 'index.html';
 }
 
 // Cerrar sesión
@@ -202,6 +211,20 @@ function descargarPDF(tipo) {
     
     // Aquí podrías agregar la lógica real de descarga
     // Por ejemplo: window.open('pdfs/' + tipo + '.pdf', '_blank');
+}
+
+// Función para abrir PDF en nueva ventana
+function abrirPDF(nombreArchivo) {
+    const usuarioActivo = localStorage.getItem('usuarioActivo');
+    
+    if (!usuarioActivo) {
+        alert('Debes iniciar sesión para ver los documentos');
+        window.location.href = 'login.html';
+        return;
+    }
+    
+    // Abrir el PDF en una nueva ventana
+    window.open(nombreArchivo, '_blank');
 }
 
 

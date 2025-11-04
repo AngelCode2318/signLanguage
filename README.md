@@ -1,14 +1,15 @@
-# Plataforma de Aprendizaje de Lenguaje de Señas
+# Plataforma de Aprendizaje de Lenguaje de Señas con SQLite
 
-Una plataforma web educativa para aprender lenguaje de señas con videos, documentos PDF y sistema de registro/login.
+Una plataforma web educativa para aprender lenguaje de señas con videos, documentos PDF y sistema de registro/login usando SQLite.
 
 ## 🌟 Características
 
-- ✅ Sistema de registro y login de usuarios
+- ✅ Sistema de registro y login con SQLite
+- 🔐 Contraseñas encriptadas con bcrypt
 - 📹 Videos educativos de YouTube integrados
 - 📄 Sección de documentos PDF descargables
 - 🎨 Diseño responsivo y atractivo
-- 💾 Almacenamiento local de usuarios (localStorage)
+- 💾 Base de datos SQLite persistente
 - 🎯 Niveles de aprendizaje (Básico, Intermedio, Avanzado)
 
 ## 📁 Estructura del Proyecto
@@ -21,28 +22,41 @@ signLanguage/
 ├── registro.html       # Página de registro
 ├── aprender.html       # Página de contenido educativo
 ├── styles.css          # Estilos CSS
-├── script.js           # Funcionalidad JavaScript
+├── script.js           # JavaScript del frontend
+├── server.js           # Servidor Node.js con Express
+├── package.json        # Dependencias del proyecto
+├── usuarios.db         # Base de datos SQLite (se crea automáticamente)
 ├── .gitignore          # Archivos ignorados por Git
 └── README.md           # Este archivo
 ```
 
-## 🚀 Cómo Usar
+## 🚀 Instalación y Uso
 
-1. **Abrir el proyecto**: Simplemente abre `index.html` en tu navegador web favorito
+### Requisitos Previos
+- Node.js (versión 14 o superior)
+- npm (viene con Node.js)
 
-2. **Registrarse**: 
-   - Haz clic en "Registrarse"
-   - Completa el formulario con tus datos
-   - La contraseña debe tener al menos 6 caracteres
+### Paso 1: Instalar Dependencias
 
-3. **Iniciar Sesión**:
-   - Usa el email y contraseña que registraste
-   - Serás redirigido a la página principal
+Abre PowerShell en la carpeta del proyecto y ejecuta:
 
-4. **Explorar Contenido**:
-   - Ve a la sección "Aprender"
-   - Mira los videos educativos
-   - Descarga los documentos PDF (requiere login)
+```powershell
+npm install
+```
+
+Esto instalará: express, sqlite3, bcrypt, cors, body-parser
+
+### Paso 2: Iniciar el Servidor
+
+```powershell
+npm start
+```
+
+Verás: 🚀 Servidor corriendo en http://localhost:3000
+
+### Paso 3: Abrir la Aplicación
+
+Ve a: http://localhost:3000
 
 ## 📚 Contenido Educativo Incluido
 
