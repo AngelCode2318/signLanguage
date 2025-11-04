@@ -1,0 +1,62 @@
+╔══════════════════════════════════════════════════════════════════╗
+║                    ⚠️  CONFIGURACIÓN INICIAL                    ║
+╚══════════════════════════════════════════════════════════════════╝
+
+� PASOS PARA CONFIGURAR (2 minutos):
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1️⃣  COPIA EL ARCHIVO DE CONFIGURACIÓN:
+
+    Windows PowerShell:
+    Copy-Item config.example.js config.local.js
+
+    O manualmente: Renombra config.example.js a config.local.js
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2️⃣  OBTÉN TU TOKEN DE HUGGINGFACE (GRATIS):
+
+    Ve a: https://huggingface.co/settings/tokens
+    
+    - Crea cuenta si no tienes (gratis, solo email)
+    - Genera nuevo token (tipo "Read")
+    - COPIA el token (empieza con hf_...)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3️⃣  EDITA config.local.js:
+
+    Abre config.local.js en tu editor de texto
+    
+    REEMPLAZA:
+    HUGGINGFACE_TOKEN: 'hf_xxxxxxxxxx'
+    
+    POR:
+    HUGGINGFACE_TOKEN: 'hf_TU_TOKEN_REAL_AQUI'
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+4️⃣  GUARDA Y LISTO:
+
+    - Guarda config.local.js (Ctrl+S)
+    - Abre index.html en tu navegador
+    - ¡Funciona! 🎉
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+� SEGURIDAD PARA GITHUB:
+
+    ✅ config.local.js NO se sube a GitHub (está en .gitignore)
+    ✅ Tu token permanece PRIVADO en tu computadora
+    ✅ Otros usuarios crearán su propio config.local.js
+    ✅ SEGURO para repositorios públicos
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📖 Instrucciones detalladas: INSTRUCCIONES_TOKEN.md
+
+🆓 Token completamente GRATIS
+✅ Límite: 1,000 requests/día
+
+Una vez configurado, la app funcionará perfectamente! 🚀
