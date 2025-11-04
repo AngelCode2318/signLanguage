@@ -84,6 +84,7 @@ Ve a: http://localhost:3000
 
 ### Documentos PDF
 - DICCIONARIO DE LENGUA DE SEÑAS MEXICANA
+- Cuaderno de Actividades Didácticas
 
 ## 🔧 Personalización
 

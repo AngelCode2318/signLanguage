@@ -20,7 +20,8 @@
                 <ul class="nav-links">
                     <li><a href="index.html">Inicio</a></li>
                     <li><a href="aprender.html#videos">Videos</a></li>
-                    <li><a href="aprender.html#pdfs">PDFs</a></li>
+                    <li><a href="aprender.html#diccionario">Diccionario LSM</a></li>
+                    <li><a href="aprender.html#ejercicios">Ejercicios LSM</a></li>
                     <li><a href="login.html" id="loginBtnNav">Iniciar Sesión</a></li>
                     <li><a href="registro.html" id="registroBtnNav">Registrarse</a></li>
                     <li><a href="#" id="logoutBtnNav" style="display:none;">Cerrar Sesión</a></li>
@@ -85,11 +86,20 @@
             <div class="container">
                 <h3 class="section-title">📄 Documentos y Guías PDF</h3>
                 <div class="pdf-grid">
-                    <div class="pdf-card" onclick="abrirPDF('docs/pdfs/Diccionario_lengua_Senas.pdf')" style="cursor: pointer;">
+                    <!-- Diccionario LSM -->
+                    <div class="pdf-card" id="diccionario" onclick="abrirPDF('docs/pdfs/Diccionario_lengua_Senas.pdf')" style="cursor: pointer;">
                         <div class="pdf-icon">📕</div>
                         <h4>DICCIONARIO DE LENGUA DE SEÑAS MEXICANA</h4>
                         <p>Diccionario completo con ilustraciones del lenguaje de señas</p>
-                        <span class="btn btn-secondary">Ver PDF</span>
+                        <span class="btn btn-primary">Ver PDF</span>
+                    </div>
+
+                    <!-- Ejercicios LSM -->
+                    <div class="pdf-card" id="ejercicios" onclick="abrirPDF('docs/pdfs/ejercicios_VF.pdf')" style="cursor: pointer;">
+                        <div class="pdf-icon">📗</div>
+                        <h4>Cuaderno de Actividades Didácticas</h4>
+                        <p>Ejercicios y actividades para practicar LSM</p>
+                        <span class="btn btn-primary">Ver PDF</span>
                     </div>
                 </div>
                 <div class="pdf-note">

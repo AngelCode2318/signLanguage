@@ -388,7 +388,8 @@ body {
 
 .pdf-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* For full-width cards: a single column that fills the container */
+    grid-template-columns: 1fr;
     gap: 2rem;
     margin-bottom: 2rem;
 }
