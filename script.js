@@ -4,6 +4,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     verificarSesion();
     inicializarFormularios();
+    protegerPaginas();
 });
 
 // Verificar si hay una sesión activa
@@ -13,6 +14,23 @@ function verificarSesion() {
     if (usuarioActivo) {
         const usuario = JSON.parse(usuarioActivo);
         actualizarNavbar(usuario);
+    }
+}
+
+// Proteger páginas - redirigir a login si no hay sesión
+function protegerPaginas() {
+    const usuarioActivo = localStorage.getItem('usuarioActivo');
+    const paginaActual = window.location.pathname.split('/').pop();
+    const paginasPublicas = ['login.html', 'registro.html', ''];
+    
+    // Si no hay sesión activa y no estamos en una página pública
+    if (!usuarioActivo && !paginasPublicas.includes(paginaActual)) {
+        window.location.href = 'login.html';
+    }
+    
+    // Si hay sesión activa y estamos en login o registro, redirigir a index
+    if (usuarioActivo && (paginaActual === 'login.html' || paginaActual === 'registro.html')) {
+        window.location.href = 'index.html';
     }
 }
 
@@ -186,22 +204,7 @@ function descargarPDF(tipo) {
     // Por ejemplo: window.open('pdfs/' + tipo + '.pdf', '_blank');
 }
 
-// Proteger páginas que requieren autenticación
-function verificarAutenticacion() {
-    const usuarioActivo = localStorage.getItem('usuarioActivo');
-    const paginasProtegidas = ['aprender.html'];
-    const paginaActual = window.location.pathname.split('/').pop();
-    
-    // Si estamos en una página protegida y no hay sesión activa
-    if (paginasProtegidas.includes(paginaActual) && !usuarioActivo) {
-        // Permitir ver la página pero mostrar mensaje para descargas
-        // No redirigir automáticamente para permitir exploración
-        console.log('Usuario no autenticado - algunas funciones estarán limitadas');
-    }
-}
 
-// Ejecutar verificación de autenticación
-verificarAutenticacion();
 
 // Función para agregar progreso del usuario (opcional - para futuras mejoras)
 function guardarProgreso(leccion, completado) {
