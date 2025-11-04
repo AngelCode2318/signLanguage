@@ -17,17 +17,33 @@ Una plataforma web educativa para aprender lenguaje de señas con videos, docume
 ```
 signLanguage/
 │
-├── index.html          # Página principal
-├── login.html          # Página de inicio de sesión
-├── registro.html       # Página de registro
-├── aprender.html       # Página de contenido educativo
-├── styles.css          # Estilos CSS
-├── script.js           # JavaScript del frontend
-├── server.js           # Servidor Node.js con Express
-├── package.json        # Dependencias del proyecto
-├── usuarios.db         # Base de datos SQLite (se crea automáticamente)
-├── .gitignore          # Archivos ignorados por Git
-└── README.md           # Este archivo
+├── 📂 css/
+│   └── styles.css              # Estilos CSS de la aplicación
+│
+├── 📂 js/
+│   └── script.js               # JavaScript del frontend
+│
+├── 📂 images/
+│   └── icono.png               # Logo/icono de la aplicación
+│
+├── 📂 docs/
+│   └── pdfs/                   # PDFs educativos
+│       └── Diccionario_lengua_Senas.pdf
+│
+├── 📄 index.html               # Página principal
+├── 📄 login.html               # Página de inicio de sesión
+├── 📄 registro.html            # Página de registro
+├── 📄 aprender.html            # Página de contenido educativo
+│
+├── 📄 server.js                # Servidor Node.js con Express
+├── 📄 package.json             # Dependencias del proyecto
+├── 📄 package-lock.json        # Versiones exactas de dependencias
+├── 📄 usuarios.db              # Base de datos SQLite (se crea automáticamente)
+├── 📄 .gitignore               # Archivos ignorados por Git
+│
+├── 📄 README.md                # Este archivo
+├── 📄 ESTRUCTURA.md            # Documentación de la estructura
+└── 📂 node_modules/            # Dependencias de Node.js (ignorado por Git)
 ```
 
 ## 🚀 Instalación y Uso
@@ -78,20 +94,19 @@ Ve a: http://localhost:3000
 
 ### Agregar tus propios PDFs
 
-1. Crea una carpeta `pdfs/` en el directorio del proyecto
-2. Agrega tus archivos PDF
-3. Actualiza la función `descargarPDF()` en `script.js`:
+1. Agrega tus archivos PDF en la carpeta `docs/pdfs/`
+2. En `aprender.html`, agrega una nueva tarjeta PDF:
 
-```javascript
-function descargarPDF(tipo) {
-    // ... código existente ...
-    
-    // Reemplaza el alert con:
-    window.open('pdfs/' + tipo + '.pdf', '_blank');
-}
+```html
+<div class="pdf-card" onclick="abrirPDF('docs/pdfs/tu-archivo.pdf')" style="cursor: pointer;">
+    <div class="pdf-icon">📕</div>
+    <h4>Título del PDF</h4>
+    <p>Descripción del contenido</p>
+    <span class="btn btn-secondary">Ver PDF</span>
+</div>
 ```
 
-4. Actualiza los enlaces en `aprender.html` para que coincidan con tus archivos
+3. El PDF se abrirá automáticamente en una nueva ventana al hacer clic en la tarjeta
 
 ### Cambiar Videos de YouTube
 
@@ -103,7 +118,7 @@ En `aprender.html`, busca las etiquetas `<iframe>` y reemplaza el `src` con el I
 
 ### Personalizar Colores
 
-En `styles.css`, modifica las variables CSS en `:root`:
+En `css/styles.css`, modifica las variables CSS en `:root`:
 
 ```css
 :root {
@@ -114,14 +129,29 @@ En `styles.css`, modifica las variables CSS en `:root`:
 }
 ```
 
-## 💾 Almacenamiento de Datos
+### Cambiar el Logo
 
-Los datos de usuarios se almacenan en `localStorage` del navegador:
-- **usuarios**: Array de todos los usuarios registrados
-- **usuarioActivo**: Usuario actualmente logueado
-- **progreso_[id]**: Progreso de aprendizaje por usuario
+1. Reemplaza el archivo `images/icono.png` con tu propio logo
+2. El logo aparecerá automáticamente en todas las páginas
+3. Recomendado: imagen PNG de 40x40 píxeles o mayor
 
-⚠️ **Nota**: Este sistema es solo para demostración. Para una aplicación real, deberías usar un backend con base de datos segura.
+## 💾 Base de Datos SQLite
+
+### Estructura de la Tabla `usuarios`
+
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| id | INTEGER | ID autoincremental (clave primaria) |
+| nombre | TEXT | Nombre completo del usuario |
+| email | TEXT | Correo electrónico (único) |
+| password | TEXT | Contraseña encriptada con bcrypt |
+| fecha_registro | DATETIME | Fecha de registro automática |
+
+### Almacenamiento de Sesión
+
+- La sesión activa se guarda en `localStorage` del navegador
+- Las credenciales se validan contra la base de datos SQLite
+- Las contraseñas están encriptadas con bcrypt (salt rounds: 10)
 
 ## 🌐 Compatibilidad
 
@@ -138,16 +168,21 @@ La página se adapta automáticamente a diferentes tamaños de pantalla:
 - 📱 Tablet (768px - 480px)
 - 📱 Móvil (< 480px)
 
-## 🔐 Seguridad
+## 🔐 Seguridad Implementada
 
-⚠️ **Importante**: Este proyecto usa almacenamiento local y NO encripta las contraseñas. Es solo para fines educativos.
+✅ **Contraseñas encriptadas** con bcrypt (salt rounds: 10)
+✅ **Validación de datos** en el servidor
+✅ **Email único** - No permite duplicados
+✅ **CORS configurado** para peticiones del frontend
+✅ **Contraseñas no expuestas** en las respuestas API
+✅ **Manejo de errores** apropiado
 
-Para un proyecto de producción:
-- Usa un backend seguro (Node.js, Python, PHP, etc.)
-- Encripta las contraseñas con bcrypt o similar
-- Implementa tokens JWT para autenticación
-- Usa HTTPS
-- Valida datos en el servidor
+### Para Producción (Mejoras Recomendadas):
+- Implementar tokens JWT para autenticación
+- Usar HTTPS
+- Migrar a PostgreSQL o MySQL para mayor robustez
+- Implementar límite de intentos de login
+- Agregar autenticación de dos factores (2FA)
 
 ## 🎨 Capturas de Pantalla
 
@@ -158,16 +193,36 @@ El proyecto incluye:
 - Sección de documentos PDF
 - Niveles de aprendizaje
 
-## 📝 Mejoras Futuras
+## 📝 Características Implementadas
 
-- [ ] Backend con Node.js/Express
-- [ ] Base de datos (MongoDB/MySQL)
+- [x] Backend con Node.js/Express ✅
+- [x] Base de datos SQLite ✅
+- [x] Sistema de autenticación ✅
+- [x] Contraseñas encriptadas ✅
+- [x] Videos educativos integrados ✅
+- [x] Documentos PDF descargables ✅
+- [x] Diseño responsivo ✅
+
+## 🚀 Mejoras Futuras
+
+- [ ] Migrar a PostgreSQL para persistencia de datos
 - [ ] Sistema de progreso de lecciones
 - [ ] Certificados de completación
 - [ ] Foro de comunidad
 - [ ] Exámenes interactivos
 - [ ] Reconocimiento de señas con IA
 - [ ] Modo oscuro
+- [ ] Notificaciones por email
+
+## 🌐 Despliegue
+
+Este proyecto está preparado para desplegarse en:
+- **Render.com** (Recomendado - Gratis)
+- **Railway.app** (Gratis)
+- **Vercel** (Gratis)
+- **Heroku** (De pago)
+
+Consulta el archivo `docs/DESPLIEGUE_RENDER.txt` para instrucciones detalladas.
 
 ## 🤝 Contribuir
 
@@ -176,6 +231,7 @@ Este es un proyecto educativo. Siéntete libre de:
 - Crear documentos PDF de calidad
 - Mejorar el diseño
 - Agregar nuevas funcionalidades
+- Reportar bugs o sugerir mejoras
 
 ## 📄 Licencia
 
