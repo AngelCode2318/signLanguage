@@ -3,124 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Traductor de Lenguaje de Señas</title>
+    <title>Aprende Lenguaje de Señas</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- TensorFlow.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-    <!-- MediaPipe Hands -->
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils"></script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🤟 Traductor de Lenguaje de Señas</h1>
-            <p>Traduce entre lenguaje de señas y texto en tiempo real</p>
-        </header>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>🤟 Lenguaje de Señas</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="aprender.html" id="aprenderLink">Aprender</a></li>
+                    <li><a href="login.html" id="loginBtn">Iniciar Sesión</a></li>
+                    <li><a href="registro.html" id="registroBtn">Registrarse</a></li>
+                    <li><a href="#" id="logoutBtn" style="display:none;">Cerrar Sesión</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-        <div class="tabs">
-            <button class="tab-button active" data-tab="sign-to-text">
-                📹 Señas → Texto
-            </button>
-            <button class="tab-button" data-tab="text-to-sign">
-                ✍️ Texto → Señas
-            </button>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Bienvenido a la Plataforma de Lenguaje de Señas</h2>
+                <p>Aprende y domina el lenguaje de señas con nuestros recursos educativos</p>
+                <div class="hero-buttons">
+                    <a href="registro.html" class="btn btn-primary">Comenzar Ahora</a>
+                    <a href="aprender.html" class="btn btn-secondary">Explorar Contenido</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>¿Por qué Aprender Lenguaje de Señas?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon">📚</div>
+                        <h3>Documentos PDF</h3>
+                        <p>Accede a guías completas y materiales descargables para estudiar a tu ritmo</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🎥</div>
+                        <h3>Videos Educativos</h3>
+                        <p>Aprende con videos de YouTube cuidadosamente seleccionados</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">✋</div>
+                        <h3>Práctica Interactiva</h3>
+                        <p>Mejora tus habilidades con ejercicios prácticos y ejemplos reales</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🌟</div>
+                        <h3>Progreso Personal</h3>
+                        <p>Registra tu avance y mantén un seguimiento de tu aprendizaje</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about">
+            <div class="container">
+                <h2>Sobre el Lenguaje de Señas</h2>
+                <p>El lenguaje de señas es una forma de comunicación visual-gestual que utilizan principalmente las personas sordas o con dificultades auditivas. Aprender este lenguaje no solo te permite comunicarte con la comunidad sorda, sino que también fomenta la inclusión y el entendimiento mutuo.</p>
+                <p>Nuestra plataforma está diseñada para hacer que el aprendizaje sea accesible, divertido y efectivo para todos.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Lenguaje de Señas. Todos los derechos reservados.</p>
+            <p>Hecho con ❤️ para la inclusión</p>
         </div>
+    </footer>
 
-        <!-- Pestaña: Señas a Texto -->
-        <div id="sign-to-text" class="tab-content active">
-            <div class="video-container">
-                <video id="video" autoplay playsinline></video>
-                <canvas id="canvas"></canvas>
-            </div>
-            
-            <div class="controls">
-                <button id="start-camera" class="btn btn-primary">
-                    🎥 Iniciar Cámara
-                </button>
-                <button id="stop-camera" class="btn btn-secondary" disabled>
-                    ⏹️ Detener Cámara
-                </button>
-            </div>
-
-            <div class="results">
-                <h3>Texto Detectado:</h3>
-                <div id="detected-text" class="output-box">
-                    Presiona "Iniciar Cámara" para comenzar...
-                </div>
-                <button id="clear-text" class="btn btn-small">Limpiar</button>
-            </div>
-
-            <div class="confidence">
-                <h4>Confianza: <span id="confidence-value">0%</span></h4>
-                <div class="confidence-bar">
-                    <div id="confidence-fill"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pestaña: Texto a Señas -->
-        <div id="text-to-sign" class="tab-content">
-            <div class="input-section">
-                <h3>Escribe el texto a traducir:</h3>
-                <textarea id="text-input" placeholder="Escribe aquí el texto que quieres convertir a lenguaje de señas..." rows="4"></textarea>
-                <button id="translate-text" class="btn btn-primary">
-                    🔄 Traducir a Señas
-                </button>
-            </div>
-
-            <div class="sign-display">
-                <h3>Señas:</h3>
-                <div id="sign-output" class="sign-container">
-                    <p class="placeholder">Las señas aparecerán aquí...</p>
-                </div>
-            </div>
-
-            <div class="playback-controls" style="display: none;">
-                <button id="play-signs" class="btn btn-primary">▶️ Reproducir</button>
-                <button id="pause-signs" class="btn btn-secondary">⏸️ Pausar</button>
-                <button id="reset-signs" class="btn btn-secondary">🔄 Reiniciar</button>
-                <div class="speed-control">
-                    <label>Velocidad:</label>
-                    <input type="range" id="playback-speed" min="0.5" max="2" step="0.25" value="1">
-                    <span id="speed-value">1x</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Información y ayuda -->
-        <div class="info-section">
-            <details>
-                <summary>ℹ️ Cómo usar esta aplicación</summary>
-                <div class="info-content">
-                    <h4>Señas → Texto:</h4>
-                    <ul>
-                        <li>Haz clic en "Iniciar Cámara" para activar tu webcam</li>
-                        <li>Realiza señas frente a la cámara</li>
-                        <li>El sistema detectará tus manos y traducirá las señas a texto</li>
-                        <li>Soporta el alfabeto dactilológico (A-Z)</li>
-                    </ul>
-                    
-                    <h4>Texto → Señas:</h4>
-                    <ul>
-                        <li>Escribe el texto que deseas traducir</li>
-                        <li>Haz clic en "Traducir a Señas"</li>
-                        <li>Se mostrarán las imágenes de cada letra en lenguaje de señas</li>
-                        <li>Usa los controles de reproducción para ver las señas en secuencia</li>
-                    </ul>
-                </div>
-            </details>
-        </div>
-
-        <footer>
-            <p>Desarrollado con ❤️ usando TensorFlow.js y MediaPipe</p>
-        </footer>
-    </div>
-
-    <!-- Cargar configuración del token (NO se sube a GitHub) -->
-    <script src="config.local.js"></script>
-    <!-- Script principal -->
-    <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,135 +1,176 @@
-# 🤟 Traductor de Lenguaje de Señas
+# Plataforma de Aprendizaje de Lenguaje de Señas
 
-Aplicación web para traducir lenguaje de señas a texto en tiempo real usando inteligencia artificial.
+Una plataforma web educativa para aprender lenguaje de señas con videos, documentos PDF y sistema de registro/login.
 
-## 🚀 Características
+## 🌟 Características
 
-- ✅ **Detección en tiempo real**: Usa tu cámara web para detectar señas del alfabeto (A-Z)
-- ✅ **Modelo de alta precisión**: 99.96% de precisión usando HuggingFace AI
-- ✅ **Texto a señas**: Convierte texto en visualización de señas
-- ✅ **Sin instalación**: Funciona 100% en el navegador
+- ✅ Sistema de registro y login de usuarios
+- 📹 Videos educativos de YouTube integrados
+- 📄 Sección de documentos PDF descargables
+- 🎨 Diseño responsivo y atractivo
+- 💾 Almacenamiento local de usuarios (localStorage)
+- 🎯 Niveles de aprendizaje (Básico, Intermedio, Avanzado)
 
-## 🎯 Tecnologías
-
-- **MediaPipe Hands**: Detección de manos y landmarks (21 puntos por mano)
-- **HuggingFace API**: Modelo pre-entrenado de reconocimiento de señas
-- **HTML5/CSS3/JavaScript**: Frontend moderno y responsivo
-
-## 📖 Cómo usar
-
-### ⚠️ PASO IMPORTANTE: Configurar Token de HuggingFace
-
-**El modelo requiere un token de HuggingFace (GRATIS) para funcionar:**
-
-1. **Copia el archivo de ejemplo:**
-   ```bash
-   # En Windows PowerShell:
-   Copy-Item config.example.js config.local.js
-   
-   # O manualmente: Renombra config.example.js a config.local.js
-   ```
-
-2. **Obtén tu token de HuggingFace:**
-   - Ve a: https://huggingface.co/settings/tokens
-   - Crea una cuenta si no tienes (gratis)
-   - Genera un nuevo token (tipo "Read")
-   - Copia el token (empieza con `hf_...`)
-
-3. **Edita `config.local.js`** y reemplaza:
-   ```javascript
-   HUGGINGFACE_TOKEN: 'hf_xxxxxxxxxx'
-   ```
-   Por tu token real:
-   ```javascript
-   HUGGINGFACE_TOKEN: 'hf_TU_TOKEN_REAL_AQUI'
-   ```
-
-4. **Guarda el archivo** - `config.local.js` NO se subirá a GitHub (está en .gitignore)
-
-**Ver instrucciones detalladas en:** `INSTRUCCIONES_TOKEN.md`
-
-### Uso de la Aplicación
-
-1. Abre `index.html` en tu navegador moderno (Chrome, Firefox, Edge)
-2. Permite el acceso a la cámara web cuando se solicite
-3. Haz señas del alfabeto frente a la cámara
-4. Observa la detección en tiempo real
-
-## 🤖 Modelo
-
-- **Nombre**: Alphabet-Sign-Language-Detection
-- **Autor**: prithivMLmods
-- **Precisión**: 99.96%
-- **Alfabeto**: A-Z (26 letras)
-- **Arquitectura**: SiGLIP (Vision Transformer)
-- **Parámetros**: 92.9M
-
-## 🔧 Configuración (Opcional)
-
-### Token de HuggingFace (REQUERIDO)
-
-La API de HuggingFace **requiere autenticación** para evitar errores CORS.
-
-**Archivos de configuración:**
-- `config.example.js` - Plantilla sin token (SE SUBE a GitHub) ✅
-- `config.local.js` - Tu archivo con token real (NO se sube a GitHub) 🔒
-
-**Pasos:**
-
-1. Crea una cuenta en [HuggingFace](https://huggingface.co) (GRATIS)
-2. Ve a: https://huggingface.co/settings/tokens
-3. Genera un nuevo token (tipo "Read")
-4. Copia `config.example.js` a `config.local.js`
-5. En `config.local.js`, reemplaza:
-   ```javascript
-   HUGGINGFACE_TOKEN: 'hf_TU_TOKEN_AQUI'
-   ```
-
-**📄 Ver guía completa:** [INSTRUCCIONES_TOKEN.md](INSTRUCCIONES_TOKEN.md)
-
-### 🔒 Seguridad
-
-- ✅ `config.local.js` está en `.gitignore` - NO se sube a GitHub
-- ✅ `config.example.js` SÍ se sube - otros usuarios lo copian
-- ✅ Tu token permanece privado y seguro
-
-## 💡 Tips para mejor detección
-
-1. ✅ Usa buena iluminación (luz natural o lámpara frontal)
-2. ✅ Fondo limpio y uniforme
-3. ✅ Mano centrada en el cuadro de video
-4. ✅ Movimientos claros y pausados
-5. ✅ Distancia adecuada: 30-60 cm de la cámara
-
-## 📝 Notas
-
-- La primera vez que uses la app, el modelo puede tardar ~20 segundos en cargar en HuggingFace
-- Se requiere conexión a internet para usar el modelo de IA
-- El navegador debe soportar WebRTC (Chrome, Firefox, Edge moderno)
-
-## 📂 Estructura del proyecto
+## 📁 Estructura del Proyecto
 
 ```
-lenguajeDeSeñas/
-├── index.html              # Página principal con interfaz de usuario
-├── styles.css              # Estilos y animaciones
-├── app.js                  # Lógica principal y detección de señas
-├── config.example.js       # Plantilla de configuración (se sube a GitHub) ✅
-├── config.local.js         # Tu configuración con token (NO se sube) 🔒
-├── .gitignore              # Protege archivos sensibles
-├── INSTRUCCIONES_TOKEN.md  # Guía para obtener token
-├── LEEME_PRIMERO.txt       # Instrucciones rápidas
-└── README.md               # Este archivo
+signLanguage/
+│
+├── index.html          # Página principal
+├── login.html          # Página de inicio de sesión
+├── registro.html       # Página de registro
+├── aprender.html       # Página de contenido educativo
+├── styles.css          # Estilos CSS
+├── script.js           # Funcionalidad JavaScript
+├── .gitignore          # Archivos ignorados por Git
+└── README.md           # Este archivo
 ```
 
-**Nota:** `config.local.js` NO aparecerá en GitHub - está protegido por `.gitignore`
+## 🚀 Cómo Usar
 
-## 🌟 Créditos
+1. **Abrir el proyecto**: Simplemente abre `index.html` en tu navegador web favorito
 
-- **Modelo de IA**: [prithivMLmods/Alphabet-Sign-Language-Detection](https://huggingface.co/prithivMLmods/Alphabet-Sign-Language-Detection)
-- **Detección de manos**: [MediaPipe by Google](https://google.github.io/mediapipe/)
-- **API de HuggingFace**: [Hugging Face Inference API](https://huggingface.co/inference-api)
+2. **Registrarse**: 
+   - Haz clic en "Registrarse"
+   - Completa el formulario con tus datos
+   - La contraseña debe tener al menos 6 caracteres
+
+3. **Iniciar Sesión**:
+   - Usa el email y contraseña que registraste
+   - Serás redirigido a la página principal
+
+4. **Explorar Contenido**:
+   - Ve a la sección "Aprender"
+   - Mira los videos educativos
+   - Descarga los documentos PDF (requiere login)
+
+## 📚 Contenido Educativo Incluido
+
+### Videos
+- Introducción al Lenguaje de Señas
+- El Alfabeto Manual
+- Números y Cantidades
+- Frases Cotidianas
+
+### Documentos PDF (simulados)
+- Guía Básica del Alfabeto
+- Vocabulario Esencial
+- Gramática y Estructura
+- Expresiones Faciales
+- Conversaciones Prácticas
+- Vocabulario Temático
+
+## 🔧 Personalización
+
+### Agregar tus propios PDFs
+
+1. Crea una carpeta `pdfs/` en el directorio del proyecto
+2. Agrega tus archivos PDF
+3. Actualiza la función `descargarPDF()` en `script.js`:
+
+```javascript
+function descargarPDF(tipo) {
+    // ... código existente ...
+    
+    // Reemplaza el alert con:
+    window.open('pdfs/' + tipo + '.pdf', '_blank');
+}
+```
+
+4. Actualiza los enlaces en `aprender.html` para que coincidan con tus archivos
+
+### Cambiar Videos de YouTube
+
+En `aprender.html`, busca las etiquetas `<iframe>` y reemplaza el `src` con el ID de tu video:
+
+```html
+<iframe src="https://www.youtube.com/embed/TU_VIDEO_ID"></iframe>
+```
+
+### Personalizar Colores
+
+En `styles.css`, modifica las variables CSS en `:root`:
+
+```css
+:root {
+    --primary-color: #4A90E2;    /* Color principal */
+    --secondary-color: #50C878;  /* Color secundario */
+    --accent-color: #FF6B6B;     /* Color de acento */
+    /* ... más colores ... */
+}
+```
+
+## 💾 Almacenamiento de Datos
+
+Los datos de usuarios se almacenan en `localStorage` del navegador:
+- **usuarios**: Array de todos los usuarios registrados
+- **usuarioActivo**: Usuario actualmente logueado
+- **progreso_[id]**: Progreso de aprendizaje por usuario
+
+⚠️ **Nota**: Este sistema es solo para demostración. Para una aplicación real, deberías usar un backend con base de datos segura.
+
+## 🌐 Compatibilidad
+
+- ✅ Chrome / Edge
+- ✅ Firefox
+- ✅ Safari
+- ✅ Opera
+- ✅ Dispositivos móviles (diseño responsivo)
+
+## 📱 Diseño Responsivo
+
+La página se adapta automáticamente a diferentes tamaños de pantalla:
+- 💻 Desktop (> 768px)
+- 📱 Tablet (768px - 480px)
+- 📱 Móvil (< 480px)
+
+## 🔐 Seguridad
+
+⚠️ **Importante**: Este proyecto usa almacenamiento local y NO encripta las contraseñas. Es solo para fines educativos.
+
+Para un proyecto de producción:
+- Usa un backend seguro (Node.js, Python, PHP, etc.)
+- Encripta las contraseñas con bcrypt o similar
+- Implementa tokens JWT para autenticación
+- Usa HTTPS
+- Valida datos en el servidor
+
+## 🎨 Capturas de Pantalla
+
+El proyecto incluye:
+- Página principal con hero section
+- Sistema de login/registro
+- Galería de videos educativos
+- Sección de documentos PDF
+- Niveles de aprendizaje
+
+## 📝 Mejoras Futuras
+
+- [ ] Backend con Node.js/Express
+- [ ] Base de datos (MongoDB/MySQL)
+- [ ] Sistema de progreso de lecciones
+- [ ] Certificados de completación
+- [ ] Foro de comunidad
+- [ ] Exámenes interactivos
+- [ ] Reconocimiento de señas con IA
+- [ ] Modo oscuro
+
+## 🤝 Contribuir
+
+Este es un proyecto educativo. Siéntete libre de:
+- Agregar más videos educativos
+- Crear documentos PDF de calidad
+- Mejorar el diseño
+- Agregar nuevas funcionalidades
+
+## 📄 Licencia
+
+Este proyecto es de código abierto y está disponible para uso educativo.
+
+## 👨‍💻 Autor
+
+Creado para facilitar el aprendizaje del lenguaje de señas y promover la inclusión.
 
 ---
 
-Desarrollado con ❤️ para la comunidad de lenguaje de señas
+**¡Gracias por usar esta plataforma educativa! 🤟**
