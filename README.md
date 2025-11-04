@@ -42,7 +42,6 @@ signLanguage/
 ├── 📄 .gitignore               # Archivos ignorados por Git
 │
 ├── 📄 README.md                # Este archivo
-├── 📄 ESTRUCTURA.md            # Documentación de la estructura
 └── 📂 node_modules/            # Dependencias de Node.js (ignorado por Git)
 ```
 
@@ -82,13 +81,8 @@ Ve a: http://localhost:3000
 - Números y Cantidades
 - Frases Cotidianas
 
-### Documentos PDF (simulados)
-- Guía Básica del Alfabeto
-- Vocabulario Esencial
-- Gramática y Estructura
-- Expresiones Faciales
-- Conversaciones Prácticas
-- Vocabulario Temático
+### Documentos PDF
+- DICCIONARIO DE LENGUA DE SEÑAS MEXICANA
 
 ## 🔧 Personalización
 
@@ -221,8 +215,6 @@ Este proyecto está preparado para desplegarse en:
 - **Railway.app** (Gratis)
 - **Vercel** (Gratis)
 - **Heroku** (De pago)
-
-Consulta el archivo `docs/DESPLIEGUE_RENDER.txt` para instrucciones detalladas.
 
 ## 🤝 Contribuir
 
