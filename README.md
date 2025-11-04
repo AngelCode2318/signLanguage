@@ -76,10 +76,11 @@ Ve a: http://localhost:3000
 ## 📚 Contenido Educativo Incluido
 
 ### Videos
-- Introducción al Lenguaje de Señas
-- El Alfabeto Manual
-- Números y Cantidades
-- Frases Cotidianas
+- Lenguaje de señas para niños/Lesco 🖐🏻
+- Aprendes y en Señas - Lección 1: Saludos
+- Aprende y en Señas - Abecedario Lengua de Señas Mexicana (Parte 1)
+- Aprende y en Señas - Abecedario (parte 2)
+- Aprende y en Señas - Abecedario (parte 3)
 
 ### Documentos PDF
 - DICCIONARIO DE LENGUA DE SEÑAS MEXICANA
