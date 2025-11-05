@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería - Lenguaje de Señas</title>
+    <link rel="icon" href="images/icono.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html" class="logo-link">
+                        <img src="images/icono.png" alt="Logo" class="logo-img">
+                        <h1>Lenguaje de Señas</h1>
+                    </a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="aprender.html#videos">Videos</a></li>
+                    <li><a href="galeria.html">Galería</a></li>
+                    <li><a href="aprender.html#diccionario">Diccionario LSM</a></li>
+                    <li><a href="aprender.html#ejercicios">Ejercicios LSM</a></li>
+                    <li><a href="login.html" id="loginBtnNav">Iniciar Sesión</a></li>
+                    <li><a href="registro.html" id="registroBtnNav">Registrarse</a></li>
+                    <li><a href="#" id="logoutBtnNav" style="display:none;">Cerrar Sesión</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="learning-header">
+            <div class="container">
+                <h2>Galería</h2>
+                <p>Imágenes y videos.</p>
+            </div>
+        </section>
+        <section class="content-section">
+            <div class="container">
+                <h3 class="gallery-title">Fotos</h3>
+                <div class="gallery-grid images-grid">
+                    <a href="docs/galeria/imagen1.jpg" target="_blank" class="gallery-item"><img src="docs/galeria/imagen1.jpg" alt="Imagen 1"></a>
+                    <a href="docs/galeria/imagen2.jpg" target="_blank" class="gallery-item"><img src="docs/galeria/imagen2.jpg" alt="Imagen 2"></a>
+                    <a href="docs/galeria/imagen3.jpg" target="_blank" class="gallery-item"><img src="docs/galeria/imagen3.jpg" alt="Imagen 3"></a>
+                    <a href="docs/galeria/imagen4.jpg" target="_blank" class="gallery-item"><img src="docs/galeria/imagen4.jpg" alt="Imagen 4"></a>
+                    <a href="docs/galeria/imagen5.jpg" target="_blank" class="gallery-item"><img src="docs/galeria/imagen5.jpg" alt="Imagen 5"></a>
+                    <a href="docs/galeria/imagen6.jpg" target="_blank" class="gallery-item"><img src="docs/galeria/imagen6.jpg" alt="Imagen 6"></a>
+                    <a href="docs/galeria/imagen7.jpg" target="_blank" class="gallery-item"><img src="docs/galeria/imagen7.jpg" alt="Imagen 7"></a>
+                </div>
+
+                <h3 class="gallery-title">Videos</h3>
+                <div class="gallery-grid videos-grid">
+                    <div class="gallery-item video-item">
+                        <video class="plyr-video" playsinline>
+                            <source src="docs/galeria/video1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="gallery-item video-item">
+                        <video class="plyr-video" playsinline>
+                            <source src="docs/galeria/video2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="gallery-item video-item">
+                        <video class="plyr-video" playsinline>
+                            <source src="docs/galeria/video3.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="gallery-item video-item">
+                        <video class="plyr-video" playsinline>
+                            <source src="docs/galeria/video4.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="gallery-item video-item">
+                        <video class="plyr-video" playsinline>
+                            <source src="docs/galeria/video5.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <img src="images/icono.png" alt="Logo" class="logo-img">
+            <h1>Lenguaje de Señas</h1>
+        </div>
+    </footer>
+
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script>
+        // Inicializar Plyr para todos los videos
+        const players = Array.from(document.querySelectorAll('.plyr-video')).map(p => new Plyr(p, {
+            controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
+            resetOnEnd: true
+        }));
+    </script>
+    <script src="js/script.js"></script>
+</body>
+</html>
